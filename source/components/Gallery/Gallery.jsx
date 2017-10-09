@@ -25,7 +25,7 @@ function MovieGridGallery(props) {
 				for(var i = 0; i < movie.genre_ids.length; i++) {
 					if(movie.genre_ids[i] == currentGenreSort || currentGenreSort == 0) {
 						moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path}/>;
-						console.log(counter+1)
+						//console.log(counter+1)
 						break;
 					}
 					else {
@@ -64,32 +64,46 @@ class Gallery extends Component {
 
 	componentDidMount() {
 		axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=1")
-		.then((response) => {
-			console.log(response.data.results)
-			this.setState({
-				movies: response.data.results
-			})
-			axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=2")
 			.then((response) => {
-				console.log(response.data.results)
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=3")
-				.then((response) => {
-					console.log(response.data.results)
-					this.setState({movies: this.state.movies.concat(response.data.results)})
-					axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=4")
-					.then((response) => {
-						console.log(response.data.results)
-						this.setState({movies: this.state.movies.concat(response.data.results)})
-						axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=5")
-						.then((response) => {
-							console.log(response.data.results)
-							this.setState({movies: this.state.movies.concat(response.data.results)})
-						})
-					})
-				})
+				this.setState({movies: response.data.results})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=2");
 			})
-		})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=3");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=4");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=5");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=6");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=7");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=8");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=9");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=10");
+			})
+			.then((response) => {
+				this.setState({movies: this.state.movies.concat(response.data.results)})
+				console.log(this.state.movies)
+			})
 	}
 
     render() {

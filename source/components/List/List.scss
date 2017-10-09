@@ -1,3 +1,8 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 .List {
 	display: flex;
 	justify-content: center;
@@ -25,10 +30,10 @@
 .container {
 	width: 500px;
 	height: 100%;
-	background-color: beige;
+	background-color: #6D9DC5;
 }
 
-.title {
+.title, .rating {
 	color: black;
 	padding-left: 12.5px;
 }
@@ -36,5 +41,5 @@
 .card {
 	width: 100%;
 	border-bottom: 1px solid black;
-	background-color: lightgray;
+	background-color: #E3EDF4;
 }
