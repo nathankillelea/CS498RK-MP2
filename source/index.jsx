@@ -2,14 +2,16 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom'
+import { Router, Route, NavLink, Switch } from 'react-router-dom'
 import { Button, Header, Image } from 'semantic-ui-css/semantic.min.css';
+import history from './components/history.jsx';
 
 // Include your new Components here
-import Movie from './components/Movie/Movie.jsx';
 import Detail from './components/Detail/Detail.jsx';
 import Gallery from './components/Gallery/Gallery.jsx';
 import List from './components/List/List.jsx';
+
+//import Test from './components/test.jsx' // DELETE
 
 // Include any new stylesheets here
 // Note that components' stylesheets should NOT be included here.
@@ -18,7 +20,7 @@ require('./styles/main.scss');
 
 // Define your router and replace <Home /> with it!
 render((
-	<Router>
+	<Router history={history}>
 		<div>
 			<h3>Popular TV Shows</h3>
 			<ul>
@@ -28,7 +30,8 @@ render((
 			<Switch>
 				<Route exact path='/' component={List} />
 				<Route exact path='/gallery' component={Gallery} />
-				<Route render={function(){return <p>Not Found</p>}} />
+				<Route path='/img/:id' component={Detail} />
+				<Route render={function(){return <p className='not-found'>Page Not Found</p>}} />
 			</Switch>
 		</div>
 	</Router>

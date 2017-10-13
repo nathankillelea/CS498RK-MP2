@@ -15,6 +15,13 @@
 	padding-bottom: 25px;
 	padding-right: 12.5px;
 	padding-left: 12.5px;
+	transition: all .1s ease-in-out;
+}
+
+// https://css-tricks.com/snippets/css/scale-on-hover-with-webkit-transition/
+.picture-gallery:hover {
+	cursor: pointer;
+	transform: scale(1.1);
 }
 
 .Genres {

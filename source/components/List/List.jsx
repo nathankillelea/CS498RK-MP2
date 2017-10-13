@@ -8,6 +8,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 //import styles from './List.scss';
+import Detail from '../Detail/Detail.jsx';
+import history from '../history.jsx'
 
 require('./List.scss');
 
@@ -68,15 +70,17 @@ function MovieGridList(props) {
 		<ul className='popular-list-list'>
 
 			{props.movies.filter(searchingFor(props.search)).sort(comparisonFunction(props.sortby, props.radio)).map( function(movie, index) {
-				return (
-					<div key={movie.id} className='card'>
-						<h4 className='title'>{movie.name}</h4>
-						<h4 className='rating'>{'Rating: ' + movie.vote_average}</h4>
-						<li className='popular-item-list'>
-							<img className='picture-list' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path}/>
-						</li>
-					</div>
-				)
+				if(movie.poster_path != null && props.search != '') {
+					return (
+						<div key={movie.id} className='card' onClick={()=>history.push("/img/"+movie.id)}>
+							<h4 className='title'>{movie.name}</h4>
+							<h4 className='rating'>{'Rating: ' + movie.vote_average}</h4>
+							<li className='popular-item-list'>
+								<img className='picture-list' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} />
+							</li>
+						</div>
+					)
+				}
 			})}
 		</ul>
 	)
@@ -98,6 +102,7 @@ class List extends Component {
 
 		this.searcHandler = this.searchHandler.bind(this);
 		this.sortHandler = this.sortHandler.bind(this);
+		this.radioHandler = this.radioHandler.bind(this);
 	}
 	searchHandler(event) {
 		this.setState({search: event.target.value});

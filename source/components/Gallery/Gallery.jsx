@@ -5,31 +5,34 @@
 
 import React, { Component } from 'react';
 import { Button, Image } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
 //import styles from './Gallery.scss';
+import Detail from '../Detail/Detail.jsx';
+import history from '../history.jsx'
+
 
 require('./Gallery.scss');
 
-let counter=0;
 function MovieGridGallery(props) {
 	return(
 		<ul className='popular-list-gallery'>
 			{props.movies.map( function(movie, index) {
 				let moviePoster;
 				if(movie.genre_ids.length == 0 && currentGenreSort == 0) { // includes movies that have no genre in ALL and that is it
-					moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path}/>;
+					moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/img/"+movie.id)}/>;
 				}
 				for(var i = 0; i < movie.genre_ids.length; i++) {
 					if(movie.genre_ids[i] == currentGenreSort || currentGenreSort == 0) {
-						moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path}/>;
-						//console.log(counter+1)
+						if(movie.poster_path != null)
+							moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/img/"+movie.id)}/>;
+						//console.log(movie.name + " " + movie.poster_path)
 						break;
 					}
 					else {
-						moviePoster = null;
+						moviePoster = null; // maybe just remove
 					}
 				}
 				return (
@@ -53,6 +56,7 @@ class Gallery extends Component {
 		super();
 		this.state = {
 			movies: [],
+			genreList: [],
 		};
 		this.clickHandler = this.clickHandler.bind(this);
 	}
@@ -103,6 +107,11 @@ class Gallery extends Component {
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				console.log(this.state.movies)
+			})
+		axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=8ff57880be2280976774263f78f86c5e&language=en-US")
+			.then((response) => {
+				this.setState({genreList: response.data.genres})
+				console.log(this.state.genreList)
 			})
 	}
 

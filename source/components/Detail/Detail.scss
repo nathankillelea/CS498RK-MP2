@@ -1,0 +1,47 @@
+.Detail-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Detail {
+	width: 1000px;
+	background-color: gray;
+	//text-align: center;
+}
+
+.detail-card {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	padding: 0 15px 15px 15px;
+}
+
+.detail-picture {
+	height: 250px !important;
+	width: 171px !important;
+	//padding-bottom: 15px;
+}
+
+.detail-title {
+	font-size: 18px;
+}
+
+.detail-overview {
+}
+
+.button-container {
+	display:flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+}
+
+.previous, .next {
+	margin: 0 !important;
+}
+
+.meta {
+	margin-top: 15px !important;
+	margin-bottom: 15px !important;
+}
