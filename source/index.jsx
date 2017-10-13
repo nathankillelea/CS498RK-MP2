@@ -30,7 +30,7 @@ render((
 			<Switch>
 				<Route exact path='/' component={List} />
 				<Route exact path='/gallery' component={Gallery} />
-				<Route path='/img/:id' component={Detail} />
+				<Route path='/detail/:id' component={Detail} />
 				<Route render={function(){return <p className='not-found'>Page Not Found</p>}} />
 			</Switch>
 		</div>

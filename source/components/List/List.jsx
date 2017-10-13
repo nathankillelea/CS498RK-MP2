@@ -72,7 +72,7 @@ function MovieGridList(props) {
 			{props.movies.filter(searchingFor(props.search)).sort(comparisonFunction(props.sortby, props.radio)).map( function(movie, index) {
 				if(movie.poster_path != null && props.search != '') {
 					return (
-						<div key={movie.id} className='card' onClick={()=>history.push("/img/"+movie.id)}>
+						<div key={movie.id} className='card' onClick={()=>history.push("/detail/"+movie.id)}>
 							<h4 className='title'>{movie.name}</h4>
 							<h4 className='rating'>{'Rating: ' + movie.vote_average}</h4>
 							<li className='popular-item-list'>
@@ -136,7 +136,7 @@ class List extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=6");
 			})
-			.then((response) => {
+			/*.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=7");
 			})
@@ -151,7 +151,7 @@ class List extends Component {
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=10");
-			})
+			})*/
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				console.log(this.state.movies)

@@ -87,7 +87,7 @@ class Detail extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=6");
 			})
-			.then((response) => {
+			/*.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=7");
 			})
@@ -102,7 +102,7 @@ class Detail extends Component {
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=10");
-			})
+			})*/
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				//console.log("I AM THE MOVIE.jsx" + this.state.movies)

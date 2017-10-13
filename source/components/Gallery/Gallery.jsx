@@ -22,12 +22,12 @@ function MovieGridGallery(props) {
 			{props.movies.map( function(movie, index) {
 				let moviePoster;
 				if(movie.genre_ids.length == 0 && currentGenreSort == 0) { // includes movies that have no genre in ALL and that is it
-					moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/img/"+movie.id)}/>;
+					moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/detail/"+movie.id)}/>;
 				}
 				for(var i = 0; i < movie.genre_ids.length; i++) {
 					if(movie.genre_ids[i] == currentGenreSort || currentGenreSort == 0) {
 						if(movie.poster_path != null)
-							moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/img/"+movie.id)}/>;
+							moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/detail/"+movie.id)}/>;
 						//console.log(movie.name + " " + movie.poster_path)
 						break;
 					}
@@ -56,7 +56,6 @@ class Gallery extends Component {
 		super();
 		this.state = {
 			movies: [],
-			genreList: [],
 		};
 		this.clickHandler = this.clickHandler.bind(this);
 	}
@@ -88,7 +87,7 @@ class Gallery extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=6");
 			})
-			.then((response) => {
+			/*.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=7");
 			})
@@ -103,15 +102,10 @@ class Gallery extends Component {
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=10");
-			})
+			})*/
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				console.log(this.state.movies)
-			})
-		axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=8ff57880be2280976774263f78f86c5e&language=en-US")
-			.then((response) => {
-				this.setState({genreList: response.data.genres})
-				console.log(this.state.genreList)
 			})
 	}
 
