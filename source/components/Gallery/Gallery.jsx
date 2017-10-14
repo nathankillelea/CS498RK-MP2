@@ -86,6 +86,9 @@ class Gallery extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				//console.log(this.state.movies)
 			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}
 
     render() {

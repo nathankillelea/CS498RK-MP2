@@ -126,6 +126,9 @@ class Detail extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				this.setState({currentMovieId: this.props.match.params.id})
 			})
+			.catch((error) => {
+				console.log(error)
+			})
 	}
     render() {
         return( // all has to be in one main div
