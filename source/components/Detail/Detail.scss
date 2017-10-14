@@ -37,6 +37,15 @@
 
 .previous, .next {
 	margin: 0 !important;
+	margin-top: 15px !important;
+}
+
+.previous {
+	margin-left: 15px !important;
+}
+
+.next {
+	margin-right: 15px !important;
 }
 
 .meta {

@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 
 import styles from './Detail.scss';
 
+import history from '../history.jsx'
+
 require('./Detail.scss');
 
 /*
@@ -64,6 +66,37 @@ class Detail extends Component {
 			movies: [],
 			currentMovieId: '',
 		};
+		this.previousClickHandler = this.previousClickHandler.bind(this);
+		this.nextClickHandler = this.nextClickHandler.bind(this);
+	}
+	previousClickHandler(event) {
+		this.setState({redirect: "True"})
+		let counter=0;
+		while(this.state.movies[counter].id!=this.state.currentMovieId) {
+			counter++;
+		}
+		if(counter == 0) {
+			this.props.history.push("/detail/"+this.state.movies[119].id); // JUST CHANGE THE DISPLAY MOVIE INSTEAD OF ROUTE, WELL OR BOTH REALLY
+			this.setState({currentMovieId: this.state.movies[119].id});
+		}
+		else {
+			this.props.history.push("/detail/"+this.state.movies[counter-1].id);
+			this.setState({currentMovieId: this.state.movies[counter-1].id});
+		}
+	}
+	nextClickHandler(event) {
+		let counter=0;
+		while(this.state.movies[counter].id!=this.state.currentMovieId) {
+			counter++;
+		}
+		if(counter == 119) {
+			this.props.history.push("/detail/"+this.state.movies[0].id);
+			this.setState({currentMovieId: this.state.movies[0].id});
+		}
+		else {
+			this.props.history.push("/detail/"+this.state.movies[counter+1].id);
+			this.setState({currentMovieId: this.state.movies[counter+1].id});
+		}
 	}
 	componentDidMount() {
 		axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=1")
@@ -115,10 +148,10 @@ class Detail extends Component {
 	            <div className="Detail">
 					<div className='button-container'>
 					<div className='previous-container'>
-						<Button className='previous'>Previous</Button>
+						<Button className='previous' onClick={()=>this.previousClickHandler(event)}>Previous</Button>
 					</div>
 					<div className='next-container'>
-						<Button className='next'>Next</Button>
+						<Button className='next' onClick={()=>this.nextClickHandler(event)}>Next</Button>
 					</div>
 					</div>
 					{!this.state.movies
@@ -129,6 +162,11 @@ class Detail extends Component {
 			</div>
         )
     }
+}
+
+Detail.propTypes =  {
+	movies: PropTypes.arrayOf(PropTypes.object),
+	currentMovieId: PropTypes.string,
 }
 
 export default Detail;

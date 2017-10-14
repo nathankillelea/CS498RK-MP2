@@ -175,4 +175,11 @@ class List extends Component {
     }
 }
 
+List.propTypes = {
+	movies: PropTypes.arrayOf(PropTypes.object),
+	search: PropTypes.string,
+	sortby: PropTypes.string,
+	radio: PropTypes.string,
+}
+
 export default List;

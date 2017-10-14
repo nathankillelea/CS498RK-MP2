@@ -167,4 +167,8 @@ class Gallery extends Component {
     }
 }
 
+Gallery.propTypes = {
+	movies: PropTypes.arrayOf(PropTypes.object),
+}
+
 export default Gallery;
