@@ -73,7 +73,6 @@ class Detail extends Component {
 		this.nextClickHandler = this.nextClickHandler.bind(this);
 	}
 	previousClickHandler(event) {
-		this.setState({redirect: "True"})
 		let counter=0;
 		while(this.state.movies[counter].id!=this.state.currentMovieId) {
 			counter++;
