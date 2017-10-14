@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Item, Image, Header } from 'semantic-ui-react';
+import { Button, Item, Image, Header, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -36,14 +36,17 @@ function DisplayMovie(props) {
 				if(props.currentMovieId == movie.id) {
 					return (
 						<div key={movie.id} className='detail-card'>
-							<Item>
-								<Item.Content>
-									<Item.Header as='h3'>{movie.name}</Item.Header>
-									<Item.Image src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} size='small'/>
-									<Item.Meta as='h4'>Description</Item.Meta>
-									<Item.Description>{movie.overview}</Item.Description>
-								</Item.Content>
-							</Item>
+							<Grid>
+								<Grid.Column width={4}>
+									<h3 className='detail-title'>{movie.name}</h3>
+									<img className='detail-picture' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path}/>
+								</Grid.Column>
+								<Grid.Column width={12}>
+									<p className='detail-description'>{movie.overview}</p>
+									<p className='detail-text'>{"First Air Date: "+movie.first_air_date}</p>
+									<p className='detail-text'>{"Rating: "+movie.vote_average}</p>
+								</Grid.Column>
+							</Grid>
 						</div>
 					)
 				}
@@ -120,25 +123,8 @@ class Detail extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=6");
 			})
-			/*.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=7");
-			})
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=8");
-			})
-			.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=9");
-			})
-			.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=10");
-			})*/
-			.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				//console.log("I AM THE MOVIE.jsx" + this.state.movies)
 				this.setState({currentMovieId: this.props.match.params.id})
 			})
 	}
@@ -170,8 +156,3 @@ Detail.propTypes =  {
 }
 
 export default Detail;
-
-/*export default function Detail(props) {
-	console.log(props.match)
-	return <h1>{this.props.match.params.img_id}</h1>
-}*/

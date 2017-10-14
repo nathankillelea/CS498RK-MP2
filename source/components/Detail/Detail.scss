@@ -5,8 +5,9 @@
 }
 
 .Detail {
-	width: 1000px;
-	background-color: gray;
+	width: 800px;
+	background-color: #F5F5F5;
+	border-radius: 5px;
 }
 
 .detail-card {
@@ -23,9 +24,16 @@
 
 .detail-title {
 	font-size: 18px;
+	padding-left: 0 !important;
 }
 
-.detail-overview {
+.detail-description {
+	padding-top: 50px !important;
+	text-align: left !important;
+}
+
+.detail-text {
+	text-align: left !important;
 }
 
 .button-container {
@@ -33,11 +41,15 @@
 	justify-content: space-between;
 	margin: 0;
 	padding: 0;
+	background-color: #6D9DC5;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 1px solid #6d6c6c;
 }
 
 .previous, .next {
 	margin: 0 !important;
 	margin-top: 15px !important;
+	margin-bottom: 15px !important;
 }
 
 .previous {

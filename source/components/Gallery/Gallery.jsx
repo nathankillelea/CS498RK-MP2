@@ -1,15 +1,11 @@
 //https://www.youtube.com/watch?v=TxqqrNfgTto&t=3s
 
-// DOES MY FILTERING NEED TO BE ABLE TO FILTER w/ MULTIPLE DIFF TYPES?
-// The gallery view should also have some kind filtering attribute where users can select one or many attributes and filter the gallery by them (i.e. genres of films or music).
-
 import React, { Component } from 'react';
 import { Button, Image } from 'semantic-ui-react';
 import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-//import styles from './Gallery.scss';
 import Detail from '../Detail/Detail.jsx';
 import history from '../history.jsx'
 
@@ -28,7 +24,6 @@ function MovieGridGallery(props) {
 					if(movie.genre_ids[i] == currentGenreSort || currentGenreSort == 0) {
 						if(movie.poster_path != null)
 							moviePoster = <img className='picture-gallery' src={"https://image.tmdb.org/t/p/w500"+ movie.poster_path} onClick={()=>history.push("/detail/"+movie.id)}/>;
-						//console.log(movie.name + " " + movie.poster_path)
 						break;
 					}
 					else {
@@ -87,22 +82,6 @@ class Gallery extends Component {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=6");
 			})
-			/*.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=7");
-			})
-			.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=8");
-			})
-			.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=9");
-			})
-			.then((response) => {
-				this.setState({movies: this.state.movies.concat(response.data.results)})
-				return axios.get("https://api.themoviedb.org/3/tv/popular?api_key=8ff57880be2280976774263f78f86c5e&language=en-US&page=10");
-			})*/
 			.then((response) => {
 				this.setState({movies: this.state.movies.concat(response.data.results)})
 				console.log(this.state.movies)

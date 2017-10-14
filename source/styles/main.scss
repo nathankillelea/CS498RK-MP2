@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $font-stack-header: 'Anton', Arial, Helvetica, sans-serif;
 $font-stack-paragraph: 'Open Sans', sans-serif;
@@ -14,9 +14,15 @@ ul {
 }
 
 h3 {
+	font-family: $font-stack-header !important;
+	font-weight: bold !important;
 	font-size: 32px;
 	text-align: center;
 	padding-top: 15px;
+}
+
+p, span, label, {
+	font-family: $font-stack-paragraph !important;
 }
 
 a:hover {
